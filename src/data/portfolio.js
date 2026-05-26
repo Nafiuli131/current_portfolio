@@ -8,7 +8,7 @@ export const profile = {
   email: 'nafiuli131@gmail.com',
   phone: '+880 1941627021',
   github: 'https://github.com/Nafiuli131',
-  linkedin: 'https://linkedin.com/in/nafiul-islam',
+  linkedin: 'https://www.linkedin.com/in/nafiul-islam-849265129/',
   resumeUrl: '/Nafiul_Islam_Resume.pdf',
   profileImage: '/profile.png',
   available: true,

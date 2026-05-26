@@ -5,7 +5,7 @@ import { profile } from '../data/portfolio.js';
 
 const channels = [
   { icon: FiMail, label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
-  { icon: FiLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/nafiul-islam', href: profile.linkedin },
+  { icon: FiLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/nafiul-islam-849265129', href: profile.linkedin },
   { icon: FiGithub, label: 'GitHub', value: 'github.com/Nafiuli131', href: profile.github },
   { icon: FiPhone, label: 'Phone', value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, '')}` },
 ];
