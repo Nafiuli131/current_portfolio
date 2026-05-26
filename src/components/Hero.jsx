@@ -105,21 +105,6 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Floating chips */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -left-6 top-10 hidden rounded-xl border border-ink-200 bg-white/90 px-3 py-2 font-mono text-xs text-ink-700 shadow-md backdrop-blur sm:block dark:border-white/10 dark:bg-ink-900/80 dark:text-ink-100"
-              >
-                <span className="text-brand-600 dark:text-brand-300">@SpringBoot</span> Microservices
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -right-4 bottom-28 hidden rounded-xl border border-ink-200 bg-white/90 px-3 py-2 font-mono text-xs text-ink-700 shadow-md backdrop-blur sm:block dark:border-white/10 dark:bg-ink-900/80 dark:text-ink-100"
-              >
-                LangGraph · <span className="text-brand-600 dark:text-brand-300">RAG</span>
-              </motion.div>
             </div>
           </motion.div>
         </motion.div>
