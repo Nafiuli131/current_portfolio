@@ -30,7 +30,7 @@ export default function About() {
     <Section
       id="about"
       eyebrow="About"
-      title="A Senior Software Engineer who likes the boring parts of reliability."
+      title="****A Senior Software Engineer who likes the boring parts of reliability."
       description="I lead Pulse — Cloudly Infotech's industrial IoT monitoring platform — and have spent six years shipping systems that have to actually work in production. Across IoT, healthcare, travel, aviation, and real-time comms, I care most about clean APIs, observable systems, and the small decisions that compound into uptime."
     >
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
