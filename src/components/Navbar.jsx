@@ -61,7 +61,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 md:ml-6 lg:ml-8">
             <ThemeToggle />
             <a
               href={profile.resumeUrl}

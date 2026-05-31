@@ -9,7 +9,7 @@ export default function Section({
   className = '',
 }) {
   return (
-    <section id={id} className={`relative py-20 sm:py-28 ${className}`}>
+    <section id={id} className={`relative scroll-mt-24 py-20 sm:py-28 ${className}`}>
       <div className="container-x">
         {(eyebrow || title || description) && (
           <motion.div

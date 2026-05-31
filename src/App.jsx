@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar.jsx';
+import ScrollProgress from './components/ScrollProgress.jsx';
 import Hero from './components/Hero.jsx';
 import About from './components/About.jsx';
 import Skills from './components/Skills.jsx';
@@ -35,6 +36,7 @@ export default function App() {
         />
       </div>
 
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

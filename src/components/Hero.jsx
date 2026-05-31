@@ -1,6 +1,8 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiArrowRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
 import { profile } from '../data/portfolio.js';
+import AnimatedNumber from './AnimatedNumber.jsx';
 
 const stagger = {
   hidden: {},
@@ -12,8 +14,17 @@ const item = {
 };
 
 export default function Hero() {
+  // Subtle parallax: portrait moves slightly slower than the rest as you scroll
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const portraitY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const portraitScale = useTransform(scrollYProgress, [0, 1], [1, 0.96]);
+
   return (
-    <section id="home" className="relative pt-32 sm:pt-40">
+    <section id="home" ref={heroRef} className="relative pt-32 sm:pt-40">
       <div className="container-x">
         <motion.div
           variants={stagger}
@@ -90,7 +101,11 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <motion.div variants={item} className="relative mx-auto w-full max-w-sm lg:mx-0">
+          <motion.div
+            variants={item}
+            style={{ y: portraitY, scale: portraitScale }}
+            className="relative mx-auto w-full max-w-sm lg:mx-0"
+          >
             <div className="relative">
               <div
                 aria-hidden
@@ -104,7 +119,6 @@ export default function Hero() {
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
               </div>
-
             </div>
           </motion.div>
         </motion.div>
@@ -117,10 +131,10 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-16 grid grid-cols-2 gap-4 rounded-2xl border border-ink-200 bg-white/70 p-6 backdrop-blur sm:grid-cols-4 dark:border-white/10 dark:bg-white/[0.03]"
         >
-          {profile.highlights.map((h) => (
+          {profile.highlights.map((h, i) => (
             <div key={h.label} className="text-center">
               <div className="font-display text-2xl font-bold text-ink-900 sm:text-3xl dark:text-white">
-                {h.value}
+                <AnimatedNumber value={h.value} delay={i * 0.12} />
               </div>
               <div className="mt-1 text-xs text-ink-500 sm:text-sm dark:text-ink-400">{h.label}</div>
             </div>
