@@ -34,9 +34,25 @@ export default function Navbar() {
         }`}
       >
         <nav className="container-x flex h-16 items-center justify-between">
-          <a href="#home" className="group flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 font-display text-sm font-bold text-white shadow-glow">
-              {profile.initials}
+          <a href="#home" className="group flex items-center gap-2.5">
+            <span className="relative shrink-0">
+              <img
+                src={profile.profileImage}
+                alt={profile.name}
+                className="h-9 w-9 rounded-full object-cover ring-2 ring-white shadow-sm transition group-hover:ring-brand-400 dark:ring-ink-800 dark:group-hover:ring-brand-400/60"
+              />
+              {profile.available && (
+                <span
+                  className="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full bg-white dark:bg-ink-950"
+                  title="Available for senior roles"
+                  aria-label="Available for work"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  </span>
+                </span>
+              )}
             </span>
             <span className="hidden sm:flex sm:flex-col sm:leading-tight">
               <span className="font-display text-sm font-semibold tracking-wide text-ink-900 dark:text-white">
