@@ -9,6 +9,7 @@ export const profile = {
   phone: '+880 1941627021',
   github: 'https://github.com/Nafiuli131',
   linkedin: 'https://www.linkedin.com/in/nafiul-islam-849265129/',
+  googleScholar: 'https://scholar.google.com/citations?user=RLJlJecAAAAJ&hl=en',
   resumeUrl: '/Nafiul_Islam_Resume.pdf',
   profileImage: '/profile.png',
   available: true,
@@ -276,6 +277,60 @@ export const education = [
     period: '2013',
     note: 'GPA 5.00 / 5.00',
   },
+  {
+    school: 'National Ideal School, Dhaka',
+    degree: 'Junior School Certificate (JSC)',
+    period: '2010',
+    note: 'GPA 5.00 / 5.00',
+  },
+];
+
+export const publications = [
+  {
+    title: 'Blockchain Technology Integrated Electronic Vote Casting System',
+    blurb:
+      'A blockchain-based electronic voting system designed for secure and transparent elections.',
+    // Paste the per-paper citation URL from Google Scholar here when you have it.
+    // Fallback: opens the Google Scholar profile.
+    url: 'https://scholar.google.com/citations?user=RLJlJecAAAAJ&hl=en',
+  },
+  {
+    title: 'Augmented Reality Marker-Based Technology for Augmenting Newspaper Advertisement',
+    blurb:
+      'Using augmented reality to enhance reader engagement with newspaper advertisements.',
+    url: 'https://scholar.google.com/citations?user=RLJlJecAAAAJ&hl=en',
+  },
+  {
+    title: 'Decentralized Way of Keeping Drug Records Using Blockchain Technology (Hyperledger Fabric)',
+    blurb:
+      'A secure blockchain-based system for managing drug records, built on Hyperledger Fabric.',
+    url: 'https://scholar.google.com/citations?user=RLJlJecAAAAJ&hl=en',
+  },
+  {
+    title: 'Cryptographic Ledger of Blockchain Technology in Healthcare',
+    blurb:
+      'Explores the use of a blockchain cryptographic ledger to enhance security and integrity of healthcare data.',
+    url: 'https://scholar.google.com/citations?user=RLJlJecAAAAJ&hl=en',
+  },
+];
+
+export const awards = [
+  {
+    title: 'Magna Cum Laude Distinction',
+    body: 'Awarded Magna Cum Laude for outstanding academic performance during undergraduate studies at NSU.',
+  },
+  {
+    title: 'Financial Scholarship (NSU)',
+    body: 'Merit-based scholarship covering 75% of undergraduate tuition expenses.',
+  },
+  {
+    title: 'Board Scholarship — General Category',
+    body: 'Granted for outstanding performance in the Higher Secondary Certificate (HSC) examination.',
+  },
+  {
+    title: 'Board Scholarship — Talent-pool Category',
+    body: 'Earned for exceptional performance in the Junior School Certificate (JSC) examination.',
+  },
 ];
 
 export const navLinks = [
@@ -285,5 +340,7 @@ export const navLinks = [
   { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'education', label: 'Education' },
+  { id: 'research', label: 'Research' },
+  { id: 'awards', label: 'Awards' },
   { id: 'contact', label: 'Contact' },
 ];

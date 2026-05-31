@@ -5,6 +5,8 @@ import Skills from './components/Skills.jsx';
 import Experience from './components/Experience.jsx';
 import Projects from './components/Projects.jsx';
 import Education from './components/Education.jsx';
+import Publications from './components/Publications.jsx';
+import Awards from './components/Awards.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 
@@ -41,6 +43,8 @@ export default function App() {
         <Experience />
         <Projects />
         <Education />
+        <Publications />
+        <Awards />
         <Contact />
       </main>
       <Footer />
