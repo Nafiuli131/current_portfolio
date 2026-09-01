@@ -1,112 +1,135 @@
-import { motion } from 'framer-motion';
-import { FiArrowRight, FiDownload, FiGithub, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi';
-import { profile } from '../data/portfolio.js';
-import AnimatedNumber from './AnimatedNumber.jsx';
-
-const stagger = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
-};
-const item = {
-  hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
-};
+import { hero, profile } from '../data/site.js';
+import Reveal from './Reveal.jsx';
+import SystemTopology from './SystemTopology.jsx';
+import { ArrowRight, Doc } from './Icons.jsx';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative pt-32 sm:pt-40">
-      <div className="container-x">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-          className="max-w-3xl"
-        >
-          {/* Senior Software Engineer pill */}
-          <motion.div variants={item} className="mb-6 flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center gap-2 rounded-full border border-brand-500/30 bg-brand-500/10 px-3 py-1 text-xs font-semibold text-brand-700 dark:border-brand-400/30 dark:bg-brand-400/10 dark:text-brand-200">
-              Senior Software Engineer
-              <span className="text-brand-400/70 dark:text-brand-300/70">·</span>
-              <span className="font-medium opacity-80">6+ yrs</span>
+    <section
+      id="home"
+      className="relative pb-16 pt-[calc(var(--nav-h)+3rem)] sm:pb-20 sm:pt-[calc(var(--nav-h)+4.5rem)] lg:pb-24 lg:pt-[calc(var(--nav-h)+5.5rem)]"
+    >
+      {/* drafting-paper atmosphere, anchored to the top of the page */}
+      <div
+        className="pointer-events-none absolute inset-x-0 -top-[var(--nav-h)] -z-10 h-[135%] overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute inset-0 bg-paper" />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(27,77,228,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(27,77,228,0.055) 1px, transparent 1px)',
+            backgroundSize: '68px 68px',
+            maskImage: 'radial-gradient(ellipse 88% 78% at 50% 8%, #000 12%, transparent 74%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 88% 78% at 50% 8%, #000 12%, transparent 74%)',
+          }}
+        />
+        <div
+          className="absolute -top-[24rem] left-1/2 h-[46rem] w-[74rem] -translate-x-1/2"
+          style={{
+            background:
+              'radial-gradient(closest-side, rgba(27,77,228,0.10), rgba(27,77,228,0.03) 55%, transparent 78%)',
+          }}
+        />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-canvas" />
+      </div>
+
+      <div className="shell">
+        {/* ---- the statement gets the full width ---- */}
+        <Reveal className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          {profile.available && (
+            <span className="inline-flex max-w-full items-center gap-2 border border-signal/25 bg-signal/[0.06] px-2.5 py-1">
+              <span className="relative flex h-1.5 w-1.5 shrink-0">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-signal anim-blip" />
+              </span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-signal">
+                {profile.availabilityNote}
+              </span>
             </span>
-          </motion.div>
+          )}
+          <span className="hidden h-3 w-px bg-line2 sm:block" aria-hidden="true" />
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+            {hero.kicker}
+          </span>
+        </Reveal>
 
-          <motion.h1 variants={item} className="heading-1">
-            <span className="block text-ink-900 dark:text-white">Hi, I'm Nafiul.</span>
-            <span className="gradient-text mt-2 block">
-              I build resilient backend systems and AI-native<br className="hidden sm:block" /> platforms.
-            </span>
-          </motion.h1>
+        <h1 className="h-display mt-8">
+          <Reveal as="span" delay={70} className="block">
+            {hero.headline[0]}
+          </Reveal>
+          <Reveal as="span" delay={150} className="block text-muted">
+            {hero.headline[1]}
+          </Reveal>
+        </h1>
 
-          <motion.p variants={item} className="muted mt-6 max-w-2xl text-base sm:text-lg">
-            Senior Software Engineer at <span className="font-semibold text-ink-800 dark:text-ink-100">Cloudly Infotech</span>, currently leading <span className="font-semibold text-ink-800 dark:text-ink-100">Pulse</span> — an industrial IoT monitoring platform running thousands of refrigeration sensors at <span className="font-semibold text-brand-600 dark:text-brand-300">99.9% uptime</span>. Six years shipping production systems in Java, Spring Boot, and microservices across IoT, healthcare, travel, and aviation.
-          </motion.p>
+        <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-12">
+          <div className="min-w-0 lg:col-span-7">
+            <Reveal delay={230} className="flex gap-4">
+              <span
+                className="mt-[11px] hidden h-px w-8 shrink-0 bg-accent sm:block"
+                aria-hidden="true"
+              />
+              <p className="max-w-[50ch] text-[17px] font-medium leading-[1.6] text-ink sm:text-[19px]">
+                {hero.positioning}
+              </p>
+            </Reveal>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#projects" className="btn-primary">
-              View Projects <FiArrowRight size={16} />
-            </a>
-            <a href="#contact" className="btn-ghost">
-              Get in touch
-            </a>
-            <a
-              href={profile.resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              download
-              className="btn-ghost"
+            <Reveal delay={300} className="mt-5 sm:pl-12">
+              <p className="body-sm max-w-[58ch]">{hero.lede}</p>
+            </Reveal>
+
+            <Reveal
+              delay={370}
+              className="mt-9 flex flex-col gap-3 xs:flex-row xs:items-center sm:pl-12"
             >
-              <FiDownload size={16} /> Resume
-            </a>
-          </motion.div>
+              <a href="#projects" className="btn-primary">
+                View My Work
+                <ArrowRight width={14} height={14} />
+              </a>
+              <a href="#contact" className="btn-ghost">
+                Work With Me
+              </a>
+              <a
+                href={profile.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-1 py-3 font-mono text-[11.5px] uppercase tracking-[0.14em] text-muted transition-colors duration-300 hover:text-accent xs:ml-1"
+              >
+                <Doc width={14} height={14} />
+                Résumé
+              </a>
+            </Reveal>
+          </div>
 
-          <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-4 text-sm text-ink-500 dark:text-ink-400">
-            <span className="inline-flex items-center gap-2">
-              <FiMapPin size={14} /> {profile.location}
-            </span>
-            <span className="hidden sm:inline">·</span>
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-ink-900 dark:hover:text-white"
-            >
-              <FiGithub size={14} /> GitHub
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-ink-900 dark:hover:text-white"
-            >
-              <FiLinkedin size={14} /> LinkedIn
-            </a>
-            <a
-              href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 hover:text-ink-900 dark:hover:text-white"
-            >
-              <FiMail size={14} /> {profile.email}
-            </a>
-          </motion.div>
-        </motion.div>
+          {/* ---- the kind of system this is about ---- */}
+          <Reveal delay={220} className="min-w-0 lg:col-span-5">
+            <SystemTopology />
+          </Reveal>
+        </div>
 
-        {/* Stats strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16 grid grid-cols-2 gap-4 rounded-2xl border border-ink-200 bg-white/70 p-6 backdrop-blur sm:grid-cols-4 dark:border-white/10 dark:bg-white/[0.03]"
-        >
-          {profile.highlights.map((h, i) => (
-            <div key={h.label} className="text-center">
-              <div className="font-display text-2xl font-bold text-ink-900 sm:text-3xl dark:text-white">
-                <AnimatedNumber value={h.value} delay={i * 0.12} />
+        {/* ---- proof strip ---- */}
+        <Reveal delay={440} className="mt-16 border-t border-line sm:mt-20">
+          <dl className="grid grid-cols-2 md:grid-cols-4">
+            {hero.metrics.map((m) => (
+              <div
+                key={m.label}
+                className="border-line py-6 pr-4 [&:nth-child(even)]:border-l [&:nth-child(even)]:pl-5 [&:nth-child(n+3)]:border-t md:[&:nth-child(even)]:pl-5 md:[&:nth-child(n+2)]:border-l md:[&:nth-child(n+2)]:pl-5 md:[&:nth-child(n+3)]:border-t-0"
+              >
+                <dt className="sr-only">{m.label}</dt>
+                <dd>
+                  <span className="block font-display text-[2rem] font-semibold tracking-tightest text-ink sm:text-[2.35rem]">
+                    {m.value}
+                  </span>
+                  <span className="mt-1.5 block font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
+                    {m.label}
+                  </span>
+                </dd>
               </div>
-              <div className="mt-1 text-xs text-ink-500 sm:text-sm dark:text-ink-400">{h.label}</div>
-            </div>
-          ))}
-        </motion.div>
+            ))}
+          </dl>
+        </Reveal>
       </div>
     </section>
   );

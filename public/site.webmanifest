@@ -1,0 +1,13 @@
+{
+  "name": "Nafiul Islam — Senior Software Engineer & Technical Leader",
+  "short_name": "Nafiul Islam",
+  "description": "Scalable software systems, AI-powered solutions, and cloud infrastructure.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F6FA",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/profile.png", "sizes": "460x460", "type": "image/png" }
+  ]
+}
