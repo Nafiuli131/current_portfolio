@@ -1,41 +1,44 @@
 import { useEffect, useState } from 'react';
 
-export function useScrollSpy(sectionIds, options = {}) {
-  const [active, setActive] = useState(sectionIds[0] || '');
+/** Returns the id of the section currently occupying the top third of the viewport. */
+export default function useScrollSpy(ids) {
+  const [active, setActive] = useState(ids[0]);
 
   useEffect(() => {
-    const observers = [];
-    const visible = new Map();
+    let frame = 0;
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
+    const measure = () => {
+      frame = 0;
+      // A section counts as current once it crosses the upper third of the viewport.
+      const offset = Math.max(140, window.innerHeight * 0.3);
+      const line = window.scrollY + offset;
+      let current = ids[0];
 
-      const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            visible.set(entry.target.id, entry.intersectionRatio);
-          });
-          let best = { id: active, ratio: 0 };
-          visible.forEach((ratio, key) => {
-            if (ratio > best.ratio) best = { id: key, ratio };
-          });
-          if (best.ratio > 0) setActive(best.id);
-        },
-        {
-          rootMargin: '-30% 0px -55% 0px',
-          threshold: [0, 0.25, 0.5, 0.75, 1],
-          ...options,
-        }
-      );
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= line) current = id;
+      }
 
-      obs.observe(el);
-      observers.push(obs);
-    });
+      const scrollable = document.body.offsetHeight - window.innerHeight;
+      const atBottom = scrollable > 200 && window.scrollY >= scrollable - 60;
+      if (atBottom) current = ids[ids.length - 1];
 
-    return () => observers.forEach((o) => o.disconnect());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sectionIds.join(',')]);
+      setActive((prev) => (prev === current ? prev : current));
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(measure);
+    };
+
+    measure();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [ids]);
 
   return active;
 }

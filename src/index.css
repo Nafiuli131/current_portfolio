@@ -2,121 +2,389 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------ *
+ * Palette — one set of roles, two themes.
+ * Light reads as drafting paper; dark as a lit drawing board.
+ * ------------------------------------------------------------------ */
+
 :root {
-  color-scheme: light dark;
+  --paper: 255 255 255;
+  --canvas: 244 246 250;
+  --mist: 237 241 247;
+  --line: 226 231 240;
+  --line2: 203 211 225;
+  --ink: 10 16 36;
+  --body: 63 74 97;
+  --muted: 98 110 136;
+
+  --accent: 27 77 228;
+  --accent-ink: 22 63 186;
+  --accent-soft: 91 132 240;
+  --accent-tint: 234 239 254;
+  --accent-fill: 27 77 228;
+  --accent-fill-hover: 22 63 186;
+
+  --signal: 11 122 84;
+
+  --shadow-soft: 0 1px 2px rgba(10, 16, 36, 0.04), 0 2px 8px -2px rgba(10, 16, 36, 0.07);
+  --shadow-lift: 0 2px 6px rgba(10, 16, 36, 0.05), 0 16px 32px -12px rgba(27, 77, 228, 0.18);
+  --shadow-press: 0 8px 22px -10px rgba(27, 77, 228, 0.55);
+
+  color-scheme: light;
+}
+
+html.dark {
+  --paper: 14 17 25;
+  --canvas: 8 10 16;
+  --mist: 20 24 36;
+  --line: 31 37 50;
+  --line2: 46 54 72;
+  --ink: 233 237 245;
+  --body: 168 178 196;
+  --muted: 124 134 153;
+
+  --accent: 147 180 255;
+  --accent-ink: 185 205 255;
+  --accent-soft: 110 155 255;
+  --accent-tint: 22 33 63;
+  --accent-fill: 46 107 255;
+  --accent-fill-hover: 31 87 232;
+
+  --signal: 61 220 151;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.5), 0 4px 14px -4px rgba(0, 0, 0, 0.55);
+  --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.5), 0 18px 36px -14px rgba(0, 0, 0, 0.7);
+  --shadow-press: 0 10px 28px -12px rgba(46, 107, 255, 0.8);
+
+  color-scheme: dark;
+}
+
+/* Theme changes should feel like a dimmer, not a cut. */
+html.theme-anim,
+html.theme-anim body,
+html.theme-anim * {
+  transition:
+    background-color 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 260ms cubic-bezier(0.16, 1, 0.3, 1),
+    fill 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    stroke 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --nav-h: 70px;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem; /* keeps anchor jumps clear of the fixed navbar */
+  scroll-padding-top: calc(var(--nav-h) + 24px);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  @apply bg-white text-ink-800 font-sans antialiased;
-}
-
-html.dark body {
-  @apply bg-ink-950 text-ink-100;
+  @apply bg-canvas font-sans text-body antialiased;
+  overflow-x: hidden;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
 ::selection {
-  @apply bg-brand-500/30 text-ink-900;
-}
-html.dark ::selection {
-  @apply bg-brand-400/40 text-white;
+  background: rgb(var(--accent-fill) / 0.2);
+  color: rgb(var(--ink));
 }
 
-html.dark ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
 }
-html.dark ::-webkit-scrollbar-track {
-  background: #0a0b10;
+::-webkit-scrollbar-track {
+  background: rgb(var(--canvas));
 }
-html.dark ::-webkit-scrollbar-thumb {
-  background: #23262f;
-  border-radius: 6px;
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line2));
+  border: 3px solid rgb(var(--canvas));
+  border-radius: 99px;
 }
-html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #3a3f4d;
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--muted));
 }
+
+:focus-visible {
+  outline: 2px solid rgb(var(--accent-fill));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Components
+ * ------------------------------------------------------------------ */
 
 @layer components {
-  .container-x {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8;
   }
+
+  /* --- type ------------------------------------------------------- */
+
+  .eyebrow {
+    @apply font-mono text-[10.5px] font-medium uppercase tracking-[0.22em] text-muted;
+  }
+
+  .h-display {
+    @apply font-display font-semibold tracking-tightest text-ink;
+    font-size: clamp(2.15rem, 5.5vw, 3.95rem);
+    line-height: 1;
+  }
+
+  .h-section {
+    @apply font-display font-semibold tracking-tightest text-ink;
+    font-size: clamp(1.8rem, 4.2vw, 2.9rem);
+    line-height: 1.06;
+  }
+
+  .h-card {
+    @apply font-display text-[1.28rem] font-semibold tracking-tight text-ink sm:text-[1.4rem];
+    line-height: 1.18;
+  }
+
+  .lede {
+    @apply text-[15.5px] leading-[1.72] text-body sm:text-[16.5px];
+  }
+
+  .body-sm {
+    @apply text-[14.5px] leading-[1.72] text-muted;
+  }
+
+  /* --- surfaces --------------------------------------------------- */
+
+  .panel {
+    @apply relative border border-line bg-paper;
+  }
+
+  .panel-hover {
+    @apply transition-[border-color,box-shadow,transform] duration-[420ms];
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .panel-hover:hover {
+    @apply border-line2 shadow-soft;
+  }
+
+  /* schematic corner ticks — the drawing-board motif */
+  .ticks::before,
+  .ticks::after {
+    content: '';
+    @apply pointer-events-none absolute h-2.5 w-2.5 opacity-0 transition-opacity duration-500;
+    border-color: rgb(var(--accent-fill));
+  }
+  .ticks::before {
+    @apply left-[-1px] top-[-1px] border-l border-t;
+  }
+  .ticks::after {
+    @apply bottom-[-1px] right-[-1px] border-b border-r;
+  }
+  .group:hover .ticks::before,
+  .group:hover .ticks::after,
+  .ticks-on::before,
+  .ticks-on::after {
+    @apply opacity-100;
+  }
+
+  /* --- buttons ---------------------------------------------------- */
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-ink-950;
+    @apply relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.14em] transition-all duration-300;
   }
+
   .btn-primary {
-    @apply btn bg-brand-500 text-white hover:bg-brand-600 hover:shadow-glow;
+    @apply btn text-white;
+    background: rgb(var(--accent-fill));
   }
+  .btn-primary:hover {
+    @apply shadow-press;
+    background: rgb(var(--accent-fill-hover));
+    transform: translateY(-1px);
+  }
+
   .btn-ghost {
-    @apply btn border border-ink-300 bg-white text-ink-900 backdrop-blur hover:border-brand-400 hover:text-brand-600 dark:border-white/20 dark:bg-white/[0.04] dark:text-ink-100 dark:hover:border-brand-400/70 dark:hover:bg-white/[0.07] dark:hover:text-brand-200;
+    @apply btn border border-line2 bg-paper text-ink;
   }
-  .btn-icon {
-    @apply inline-flex h-10 w-10 items-center justify-center rounded-full border border-ink-200 bg-white/60 text-ink-700 backdrop-blur transition hover:border-brand-400 hover:text-brand-600 dark:border-white/10 dark:bg-white/5 dark:text-ink-200 dark:hover:border-brand-400 dark:hover:text-brand-300;
-  }
-
-  .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-ink-200 bg-white/70 px-3 py-1 text-xs font-medium text-ink-700 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-ink-200;
+  .btn-ghost:hover {
+    @apply border-accent text-accent shadow-soft;
+    transform: translateY(-1px);
   }
 
-  .card {
-    @apply relative rounded-2xl border border-ink-200 bg-white p-6 shadow-sm transition-all dark:border-white/5 dark:bg-ink-900/60 dark:shadow-card;
-  }
-  .card-hover {
-    @apply hover:-translate-y-1 hover:border-brand-300 hover:shadow-md dark:hover:border-brand-400/40;
+  .btn-sm {
+    @apply px-4 py-2.5 text-[11px];
   }
 
-  .heading-1 {
-    @apply font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl;
+  /* --- bits ------------------------------------------------------- */
+
+  .tag {
+    @apply inline-flex items-center border border-line bg-canvas px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.12em] text-muted transition-colors duration-300;
   }
-  .heading-2 {
-    @apply font-display text-3xl font-bold tracking-tight sm:text-4xl;
-  }
-  .heading-3 {
-    @apply font-display text-xl font-semibold sm:text-2xl;
-  }
-  .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300;
-  }
-  .muted {
-    @apply text-ink-500 dark:text-ink-400;
+  .group:hover .tag {
+    @apply border-line2 text-body;
   }
 
-  .gradient-text {
-    @apply bg-gradient-to-br from-ink-900 via-brand-700 to-brand-500 bg-clip-text text-transparent dark:from-white dark:via-brand-200 dark:to-brand-400;
+  .tag-accent {
+    @apply inline-flex items-center border border-accent/25 bg-accent-tint px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.12em] text-accent-ink;
   }
 
-  .nav-link {
-    @apply relative text-sm font-medium text-ink-600 transition hover:text-ink-900 dark:text-ink-300 dark:hover:text-white;
+  .hair {
+    @apply h-px w-full bg-line;
   }
-  .nav-link.active {
-    @apply text-ink-900 dark:text-white;
+
+  .link-arrow {
+    @apply inline-flex items-center gap-2 font-mono text-[11.5px] font-medium uppercase tracking-[0.14em] text-accent transition-colors duration-300 hover:text-accent-ink;
   }
-  .nav-link.active::after {
-    content: '';
-    @apply absolute -bottom-1.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-brand-500;
+
+  .field {
+    @apply w-full border border-line bg-paper px-4 py-3.5 text-[15px] text-ink transition-colors duration-300 placeholder:text-muted/70;
+  }
+  .field:hover {
+    @apply border-line2;
+  }
+  .field:focus {
+    @apply border-accent outline-none;
+    box-shadow: 0 0 0 3px rgb(var(--accent-fill) / 0.15);
+  }
+
+  .field-label {
+    @apply mb-2 block font-mono text-[10.5px] uppercase tracking-[0.18em] text-muted;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Utilities
+ * ------------------------------------------------------------------ */
+
+/* Diagram roles — every schematic paints from the same palette. */
+@layer components {
+  .dg-stroke {
+    stroke: rgb(var(--line2));
+  }
+  .dg-stroke-faint {
+    stroke: rgb(var(--line));
+  }
+  .dg-surface {
+    fill: rgb(var(--paper));
+  }
+  .dg-surface-alt {
+    fill: rgb(var(--mist));
+  }
+  .dg-hole {
+    fill: rgb(var(--canvas));
+  }
+  .dg-fill-line {
+    fill: rgb(var(--line));
+  }
+  .dg-fill-line2 {
+    fill: rgb(var(--line2));
+  }
+  .dg-accent {
+    fill: rgb(var(--accent-fill));
+  }
+  .dg-accent-stroke {
+    stroke: rgb(var(--accent-fill));
+  }
+  .dg-signal {
+    fill: rgb(var(--signal));
+  }
+  .dg-text {
+    fill: rgb(var(--muted));
+  }
+  .dg-text-strong {
+    fill: rgb(var(--body));
+  }
+  .dg-text-accent {
+    fill: rgb(var(--accent));
+  }
+  .dg-arrow {
+    stroke: rgb(var(--line2));
   }
 }
 
 @layer utilities {
-  .mask-radial {
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 40%, transparent 80%);
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+  }
+
+  .mask-none {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
   }
 }
 
+/* ------------------------------------------------------------------ *
+ * Motion
+ * ------------------------------------------------------------------ */
+
+@keyframes blip {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.anim-marquee {
+  animation: marquee 42s linear infinite;
+}
+.anim-blip {
+  animation: blip 2.6s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
