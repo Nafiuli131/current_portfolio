@@ -1,58 +1,43 @@
 /** @type {import('tailwindcss').Config} */
+const v = (name) => `rgb(var(${name}) / <alpha-value>)`;
+
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./index.html', './src/**/*.{js,jsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
+        display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-        display: ['"Sora"', 'Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+        serif: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
       },
       colors: {
-        brand: {
-          50: '#eef4ff',
-          100: '#dbe6ff',
-          200: '#bfd2ff',
-          300: '#93b3ff',
-          400: '#608aff',
-          500: '#3b66ff',
-          600: '#2447ec',
-          700: '#1c36c4',
-          800: '#1c309b',
-          900: '#1e2f7a',
+        paper: v('--paper'),
+        canvas: v('--canvas'),
+        mist: v('--mist'),
+        line: v('--line'),
+        line2: v('--line2'),
+        ink: v('--ink'),
+        body: v('--body'),
+        muted: v('--muted'),
+        accent: {
+          DEFAULT: v('--accent'),
+          ink: v('--accent-ink'),
+          soft: v('--accent-soft'),
+          tint: v('--accent-tint'),
+          fill: v('--accent-fill'),
         },
-        ink: {
-          50: '#f7f8fb',
-          100: '#eef0f5',
-          200: '#dadde6',
-          300: '#b8bcc9',
-          400: '#8a8fa1',
-          500: '#666b7e',
-          600: '#4d5263',
-          700: '#3a3f4d',
-          800: '#23262f',
-          900: '#13151b',
-          950: '#0a0b10',
-        },
+        signal: v('--signal'),
       },
+      maxWidth: { shell: '1180px' },
+      letterSpacing: { tightest: '-0.045em' },
       boxShadow: {
-        glow: '0 0 0 1px rgba(59,102,255,0.25), 0 18px 50px -12px rgba(59,102,255,0.45)',
-        card: '0 1px 0 rgba(255,255,255,0.04) inset, 0 12px 32px -12px rgba(0,0,0,0.35)',
+        soft: 'var(--shadow-soft)',
+        lift: 'var(--shadow-lift)',
+        press: 'var(--shadow-press)',
       },
-      backgroundImage: {
-        'radial-fade':
-          'radial-gradient(60% 60% at 50% 0%, rgba(59,102,255,0.18) 0%, transparent 70%)',
-      },
-      keyframes: {
-        float: {
-          '0%,100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-      },
-      animation: {
-        float: 'float 6s ease-in-out infinite',
-      },
+      screens: { xs: '420px' },
     },
   },
   plugins: [],
