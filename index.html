@@ -1,58 +1,174 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0a0b10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="color-scheme" content="light dark" />
 
-    <title>Nafiul Islam — Senior Software Engineer · Lead, Pulse</title>
+    <title>
+      Nafiul Islam — Senior Software Engineer &amp; Technical Leader | Backend, AI &amp; Cloud
+    </title>
     <meta
       name="description"
-      content="Senior Software Engineer (6+ yrs). Currently leading Pulse — Cloudly Infotech's industrial IoT monitoring platform at 99.9% uptime. Java, Spring Boot, Microservices, FastAPI, LangGraph, RAG."
+      content="Nafiul Islam is a Senior Software Engineer and Technical Leader who builds scalable software systems, AI-powered solutions, and cloud infrastructure. 6+ years in Java, Spring Boot, and microservices across industrial IoT, healthcare, travel, aviation, and real-time communication."
     />
     <meta
       name="keywords"
-      content="Nafiul Islam, Senior Software Engineer, Lead Developer, Pulse, Cloudly Infotech, Java, Spring Boot, Microservices, Backend Engineer, FastAPI, LangGraph, RAG, AI Engineer, Dhaka, Remote"
+      content="Nafiul Islam, Senior Software Engineer, Technical Leader, Backend Engineer, Java Developer, Spring Boot, Microservices, Software Architecture, AI Solutions, RAG, LangGraph, Cloud Architecture, System Design, Technical Consulting, Dhaka, Remote"
     />
-    <meta name="author" content="Nafiul Islam, Senior Software Engineer" />
+    <meta name="author" content="Nafiul Islam" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href="https://nafiulislam.netlify.app/" />
 
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/profile.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Nafiul Islam — Senior Software Engineer · Lead, Pulse" />
+    <meta property="og:site_name" content="Nafiul Islam" />
+    <meta property="og:url" content="https://nafiulislam.netlify.app/" />
+    <meta
+      property="og:title"
+      content="Nafiul Islam — Senior Software Engineer &amp; Technical Leader"
+    />
     <meta
       property="og:description"
-      content="Senior Software Engineer leading Pulse — an industrial IoT platform at 99.9% uptime. Java · Spring Boot · LangGraph · RAG. 6+ years."
+      content="I build scalable software systems, AI-powered solutions, and cloud infrastructure that solve real-world problems."
     />
-    <meta property="og:image" content="/profile.png" />
+    <meta property="og:image" content="https://nafiulislam.netlify.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Nafiul Islam — Senior Software Engineer &amp; Technical Leader"
+    />
+    <meta property="og:locale" content="en_US" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Nafiul Islam — Senior Software Engineer · Lead, Pulse" />
+    <meta
+      name="twitter:title"
+      content="Nafiul Islam — Senior Software Engineer &amp; Technical Leader"
+    />
     <meta
       name="twitter:description"
-      content="Senior Software Engineer · Lead Developer, Pulse IoT Platform · Java · Spring Boot · LangGraph · RAG."
+      content="I build scalable software systems, AI-powered solutions, and cloud infrastructure that solve real-world problems."
     />
-    <meta name="twitter:image" content="/profile.png" />
+    <meta name="twitter:image" content="https://nafiulislam.netlify.app/og.png" />
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+    />
+    <link
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
     />
 
     <script>
+      /* Set the theme before first paint so there is no flash. */
       (function () {
         try {
-          var t = localStorage.getItem('theme');
-          var dark = t ? t === 'dark' : true;
-          if (dark) document.documentElement.classList.add('dark');
-          else document.documentElement.classList.remove('dark');
+          var stored = localStorage.getItem('theme');
+          var dark =
+            stored === 'dark' ||
+            (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) {
+            document.documentElement.classList.add('dark');
+            var meta = document.querySelector('meta[name="theme-color"]');
+            if (meta) meta.setAttribute('content', '#080A10');
+          }
         } catch (e) {}
       })();
     </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nafiul Islam",
+        "url": "https://nafiulislam.netlify.app/",
+        "image": "https://nafiulislam.netlify.app/profile.png",
+        "jobTitle": "Senior Software Engineer",
+        "description": "Senior Software Engineer and Technical Leader building scalable software systems, AI-powered solutions, and cloud infrastructure.",
+        "email": "mailto:nafiuli131@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dhaka",
+          "addressCountry": "Bangladesh"
+        },
+        "worksFor": { "@type": "Organization", "name": "Cloudly Infotech Limited" },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "North South University" },
+          { "@type": "EducationalOrganization", "name": "National Ideal College" }
+        ],
+        "knowsAbout": [
+          "Backend Engineering",
+          "Software Architecture",
+          "Java",
+          "Spring Boot",
+          "Microservices",
+          "REST API Design",
+          "Distributed Systems",
+          "Apache Kafka",
+          "Artificial Intelligence",
+          "Retrieval-Augmented Generation",
+          "LangGraph",
+          "Cloud Architecture",
+          "AWS",
+          "Docker",
+          "Kubernetes",
+          "Industrial IoT",
+          "PostgreSQL"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/nafiul-islam-849265129/",
+          "https://github.com/Nafiuli131",
+          "https://scholar.google.com/citations?user=RLJlJecAAAAJ&hl=en",
+          "https://usetoolora.netlify.app/"
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Nafiul Islam — Software Engineering & AI Consulting",
+        "url": "https://nafiulislam.netlify.app/#work-with-me",
+        "areaServed": "Worldwide",
+        "provider": { "@type": "Person", "name": "Nafiul Islam" },
+        "serviceType": [
+          "Software Development",
+          "Backend Systems",
+          "AI Solutions",
+          "Cloud Architecture",
+          "Technical Consulting"
+        ]
+      }
+    </script>
   </head>
+
   <body>
     <div id="root"></div>
+
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; color: #0a1024">
+        <h1>Nafiul Islam — Senior Software Engineer &amp; Technical Leader</h1>
+        <p>
+          I build scalable software systems, AI-powered solutions, and cloud infrastructure.
+          This site needs JavaScript enabled. You can reach me at
+          <a href="mailto:nafiuli131@gmail.com" style="color: #1b4de4">nafiuli131@gmail.com</a>.
+        </p>
+      </div>
+    </noscript>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
