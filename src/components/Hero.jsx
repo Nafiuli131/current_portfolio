@@ -82,7 +82,7 @@ export default function Hero() {
 
             <Reveal
               delay={370}
-              className="mt-9 flex flex-col gap-3 xs:flex-row xs:items-center sm:pl-12"
+              className="mt-9 flex flex-col flex-wrap gap-3 sm:flex-row sm:items-center sm:pl-12"
             >
               <a href="#projects" className="btn-primary">
                 View My Work
@@ -95,7 +95,7 @@ export default function Hero() {
                 href={profile.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-1 py-3 font-mono text-[11.5px] uppercase tracking-[0.14em] text-muted transition-colors duration-300 hover:text-accent xs:ml-1 xs:justify-start"
+                className="inline-flex items-center justify-center gap-2 px-1 py-3 font-mono text-[11.5px] uppercase tracking-[0.14em] text-muted transition-colors duration-300 hover:text-accent sm:ml-1 sm:justify-start"
               >
                 <Doc width={14} height={14} />
                 Résumé
