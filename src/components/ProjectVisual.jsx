@@ -205,7 +205,7 @@ function ClinicalVisual({ animate }) {
         x="118"
         y="32"
         width="250"
-        height="70"
+        height="62"
         rx="2"
         className="dg-stroke"
         fill="none"
@@ -652,10 +652,179 @@ function CrudVisual() {
   );
 }
 
+/* --------------------------- Readiness: dataset to scored dashboard */
+
+function ReadinessVisual({ animate }) {
+  const jobs = [
+    { x: 126, label: 'VALIDATE' },
+    { x: 208, label: 'MERGE' },
+    { x: 290, label: 'SCORE' },
+  ];
+  return (
+    <svg
+      viewBox={LARGE}
+      className="h-auto w-full"
+      role="img"
+      aria-label="Diagram: a source dataset passes through Spring Batch validate, merge and score jobs into PostgreSQL with a file fallback; a React dashboard and an offline tablet survey read from it, behind a CI gate."
+    >
+      <Txt x="20" y="14">CANDIDATE SITES · POWER · COOLING · SPACE · NETWORK</Txt>
+
+      <Store x={20} y={45} w={72} h={44} label="DATASET" sub="CANONICAL" />
+      <Arrow d="M 92 67 H 116" head="M 110 63.5 l 5 3.5 l -5 3.5" />
+
+      <rect
+        x="118"
+        y="32"
+        width="250"
+        height="70"
+        rx="2"
+        className="dg-stroke"
+        fill="none"
+        strokeDasharray="3 4"
+      />
+      <Txt x="243" y="27" anchor="middle" cls="dg-text-accent">SPRING BATCH · VERSIONED ARTIFACTS</Txt>
+
+      {jobs.map((j, i) => (
+        <g key={j.label}>
+          <Node x={j.x} y={52} w={70} h={30} label={j.label} />
+          {i < 2 && (
+            <Arrow
+              d={`M ${j.x + 70} 67 H ${j.x + 82}`}
+              head={`M ${j.x + 77} 63.5 l 4 3.5 l -4 3.5`}
+            />
+          )}
+        </g>
+      ))}
+
+      <Arrow d="M 368 67 H 390" head="M 384 63.5 l 5 3.5 l -5 3.5" />
+      <Store x={396} y={45} w={96} h={44} label="POSTGRESQL" sub="FILE FALLBACK" />
+
+      <path
+        d="M 444 89 V 99 H 170 V 103"
+        className="dg-stroke-faint"
+        fill="none"
+      />
+      <path d="M 166 98 l 4 5 l 4 -5" className="dg-arrow" fill="none" strokeWidth="1.1" />
+
+      <rect x="20" y="106" width="300" height="24" rx="2" className="dg-surface-alt dg-stroke" />
+      <line x1="170" y1="106" x2="170" y2="130" className="dg-stroke" />
+      <Txt x="95" y="121" anchor="middle" cls="dg-text-strong">REACT DASHBOARD</Txt>
+      <Txt x="245" y="121" anchor="middle" cls="dg-text-strong">OFFLINE TABLET SURVEY</Txt>
+
+      <rect x="332" y="106" width="164" height="24" rx="2" className="dg-surface dg-stroke" />
+      <rect x="332" y="106" width="2" height="24" className="dg-signal" />
+      <Txt x="416" y="121" anchor="middle" cls="dg-text-strong">CI GATE · SCHEMA CHECKS</Txt>
+
+      <Txt x="20" y="143">MANAGED CONTAINERS · IDENTITY-AWARE ACCESS</Txt>
+
+      {animate && (
+        <Packet path="M 92 67 H 116 M 196 67 H 208 M 278 67 H 290 M 368 67 H 390" dur={4.4} />
+      )}
+    </svg>
+  );
+}
+
+/* ------------------------- Digital twin: one codebase, two builds */
+
+function TwinVisual({ animate }) {
+  return (
+    <svg
+      viewBox={LARGE}
+      className="h-auto w-full"
+      role="img"
+      aria-label="Diagram: declarative source data is compiled by a Java generator into typed bundles for an internal build and a redacted customer build, feeding a map explorer with web-worker simulation and a pricing tool, with tests asserting the redaction holds."
+    >
+      <Txt x="20" y="16">ONE TYPESCRIPT CODEBASE · TWO BUILDS</Txt>
+
+      <Store x={20} y={45} w={72} h={44} label="SOURCE" sub="DECLARATIVE" />
+      <Arrow d="M 92 67 H 116" head="M 110 63.5 l 5 3.5 l -5 3.5" />
+      <Node x={116} y={48} w={80} h={38} label="JAVA GEN" sub="BUILD TIME" />
+
+      <Arrow d="M 196 67 H 214 V 36 H 234" head="M 228 32.5 l 5 3.5 l -5 3.5" />
+      <Arrow d="M 214 67 V 104 H 234" head="M 228 100.5 l 5 3.5 l -5 3.5" />
+
+      <Node x={236} y={20} w={96} h={32} label="INTERNAL" sub="FULL DETAIL" />
+      <Node x={236} y={88} w={96} h={32} label="CUSTOMER" sub="REDACTED BUNDLE" />
+
+      <Arrow d="M 332 36 H 354" head="M 348 32.5 l 5 3.5 l -5 3.5" />
+      <Arrow d="M 332 104 H 354" head="M 348 100.5 l 5 3.5 l -5 3.5" />
+
+      <Node x={356} y={20} w={140} h={32} label="MAP EXPLORER" sub="DECK.GL · MAPLIBRE" />
+      <Node x={356} y={88} w={140} h={32} label="PRICING TOOL" sub="GUIDED FLOW" />
+
+      <path d="M 426 52 V 58" className="dg-stroke-faint" strokeDasharray="3 3" fill="none" />
+      <rect x="356" y="58" width="140" height="22" rx="2" className="dg-surface-alt dg-stroke" />
+      <Txt x="426" y="72" anchor="middle" cls="dg-text-strong">WEB WORKER · RE-ROUTE</Txt>
+
+      <rect x="20" y="100" width="176" height="36" rx="2" className="dg-surface dg-stroke" />
+      <rect x="20" y="100" width="2" height="36" className="dg-signal" />
+      <Txt x="108" y="114" anchor="middle" cls="dg-text-strong" size="8.5">VITEST + PLAYWRIGHT</Txt>
+      <Txt x="108" y="127" anchor="middle">TESTS ASSERT REDACTION HOLDS</Txt>
+
+      <path d="M 284 120 V 126 H 202" className="dg-stroke-faint" strokeDasharray="3 4" fill="none" />
+      <path d="M 207 122 l -5 4 l 5 4" className="dg-arrow" fill="none" strokeWidth="1.1" />
+
+      {animate &&
+        [0, 1].map((i) => (
+          <Packet
+            key={i}
+            path="M 92 67 H 116 M 214 36 H 234 M 214 104 H 234 M 332 36 H 354 M 332 104 H 354"
+            dur={5}
+            begin={i * 2.5}
+          />
+        ))}
+    </svg>
+  );
+}
+
+/* ------------------- Assessment: interview in, scored report out */
+
+function AssessmentVisual({ animate }) {
+  return (
+    <svg
+      viewBox={LARGE}
+      className="h-auto w-full"
+      role="img"
+      aria-label="Diagram: a structured interview plus shared exports and logs enter a Spring Boot API, pass through a rule-based scoring engine into a ranked report, which exports a fillable PDF that is imported back and re-scored."
+    >
+      <Txt x="20" y="20">AGENT READINESS · ONE MODEL BEHIND FORM, SCORE, REPORT</Txt>
+
+      <Node x={20} y={36} w={92} h={28} label="INTERVIEW" spine={false} />
+      <Node x={20} y={74} w={92} h={28} label="EXPORTS · LOGS" spine={false} />
+
+      <path d="M 112 88 H 126 V 67" className="dg-stroke" fill="none" />
+      <Arrow d="M 112 50 H 126 V 67 H 146" head="M 140 63.5 l 5 3.5 l -5 3.5" />
+
+      <Node x={152} y={48} w={90} h={38} label="SPRING BOOT" sub="REST API" />
+      <Arrow d="M 242 67 H 264" head="M 258 63.5 l 5 3.5 l -5 3.5" />
+      <Node x={270} y={48} w={90} h={38} label="SCORING" sub="RULE ENGINE" />
+      <Arrow d="M 360 67 H 382" head="M 376 63.5 l 5 3.5 l -5 3.5" />
+      <Node x={388} y={48} w={104} h={38} label="REPORT" sub="RANKED FINDINGS" />
+
+      <Arrow d="M 440 86 V 109 H 336" head="M 342 105.5 l -6 3.5 l 6 3.5" />
+      <Node x={222} y={96} w={108} h={26} label="FILLABLE PDF" spine={false} />
+      <path d="M 222 109 H 197 V 88" className="dg-stroke" fill="none" />
+      <path d="M 193 93 l 4 -5 l 4 5" className="dg-arrow" fill="none" strokeWidth="1.1" />
+
+      <Txt x="448" y="102">EXPORT</Txt>
+      <Txt x="192" y="100" anchor="end">RE-SCORE</Txt>
+
+      <Txt x="20" y="140">SAMPLE SETS VERIFIED BY ROUND-TRIP THROUGH THE TOOL ITSELF</Txt>
+
+      {animate && (
+        <Packet path="M 126 67 H 146 M 242 67 H 264 M 360 67 H 382" dur={4.2} />
+      )}
+    </svg>
+  );
+}
+
 const VISUALS = {
   privacy: { C: PrivacyVisual, min: 440 },
   industrial: { C: IndustrialVisual, min: 440 },
   clinical: { C: ClinicalVisual, min: 460 },
+  readiness: { C: ReadinessVisual, min: 470 },
+  twin: { C: TwinVisual, min: 470 },
+  assessment: { C: AssessmentVisual, min: 460 },
   travel: { C: TravelVisual, min: 470 },
   aviation: { C: AviationVisual, min: 450 },
   realtime: { C: RealtimeVisual, min: 450 },

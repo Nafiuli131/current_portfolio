@@ -17,12 +17,8 @@ export default function About() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-14">
           {/* portrait + quick facts */}
           <Reveal className="order-first min-w-0 lg:order-none lg:col-span-5">
-            <div className="group">
+            <div>
               <div className="panel ticks relative overflow-hidden p-2 shadow-soft">
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-2 z-10 bg-accent/[0.06] transition-opacity duration-[900ms] group-hover:opacity-0"
-                />
                 <img
                   src={profile.profileImage}
                   alt={`${profile.name}, ${profile.role}`}
@@ -30,7 +26,7 @@ export default function About() {
                   height="460"
                   loading="lazy"
                   decoding="async"
-                  className="aspect-square w-full object-cover grayscale contrast-[1.04] transition-[filter] duration-[900ms] ease-out group-hover:grayscale-0"
+                  className="aspect-square w-full object-cover"
                 />
               </div>
               <div className="flex items-center justify-between border-x border-b border-line bg-paper px-4 py-2.5">

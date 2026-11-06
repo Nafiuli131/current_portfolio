@@ -1,6 +1,6 @@
 import { hero, profile } from '../data/site.js';
 import Reveal from './Reveal.jsx';
-import SystemTopology from './SystemTopology.jsx';
+import ExpertisePanel from './ExpertisePanel.jsx';
 import { ArrowRight, Doc } from './Icons.jsx';
 
 export default function Hero() {
@@ -103,9 +103,9 @@ export default function Hero() {
             </Reveal>
           </div>
 
-          {/* ---- the kind of system this is about ---- */}
+          {/* ---- what I'm hired for ---- */}
           <Reveal delay={220} className="min-w-0 lg:col-span-5">
-            <SystemTopology />
+            <ExpertisePanel />
           </Reveal>
         </div>
 

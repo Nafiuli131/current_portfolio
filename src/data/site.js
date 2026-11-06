@@ -7,7 +7,7 @@
 export const profile = {
   name: 'Nafiul Islam',
   wordmark: 'NAFIUL',
-  role: 'Senior Software Engineer & Technical Leader',
+  role: 'Senior Software Engineer & Solution Architect',
   positioning:
     'I build scalable software systems, AI-powered solutions, and cloud infrastructure that solve real-world problems.',
   location: 'Dhaka, Bangladesh',
@@ -38,18 +38,52 @@ export const nav = [
 /* ---------------------------------------------------------------- hero */
 
 export const hero = {
-  kicker: 'Senior Software Engineer & Technical Leader',
+  kicker: 'Senior Software Engineer · Solution Architect',
   headline: ['I build software systems', 'that solve real-world problems.'],
   positioning:
-    'Scalable software systems, AI-powered solutions, and cloud infrastructure.',
+    'System architecture, scalable backends, applied AI, and the React interfaces on top.',
   lede:
-    'Six years shipping production platforms in Java, Spring Boot, and microservices — across industrial IoT, healthcare, travel, aviation, and real-time communication.',
+    'Six years owning the architecture of production platforms — Java and Spring Boot on the backend, React and TypeScript on the front — across industrial IoT, healthcare, travel, aviation, and real-time communication.',
   metrics: [
     { value: '6+', label: 'Years in production' },
-    { value: '99.9%', label: 'Uptime · IoT platform' },
-    { value: '553+', label: 'Tests at 95% coverage' },
     { value: '5', label: 'Industry domains' },
+    { value: '350+', label: 'Students mentored' },
+    { value: '4', label: 'Peer-reviewed papers' },
   ],
+};
+
+/* ------------------------------------------------------ hero expertise */
+
+export const expertise = {
+  eyebrow: 'Expertise',
+  meta: '6 years · 5 industries',
+  items: [
+    {
+      index: '01',
+      title: 'Solution Architecture',
+      note: 'How the whole system fits together, decided before the first line of code.',
+      tech: 'System design · API contracts · Scale',
+    },
+    {
+      index: '02',
+      title: 'Backend Engineering',
+      note: 'Services that stay up under real load.',
+      tech: 'Java · Spring Boot · Microservices · Kafka',
+    },
+    {
+      index: '03',
+      title: 'Frontend Engineering',
+      note: 'Interfaces that feel instant, online or off.',
+      tech: 'React · TypeScript · Real-time UI',
+    },
+    {
+      index: '04',
+      title: 'Applied AI',
+      note: 'AI that answers from your own data, not guesswork.',
+      tech: 'RAG · Agents · Spring AI · pgvector',
+    },
+  ],
+  cta: { label: 'Read the case studies', href: '#experience' },
 };
 
 /* --------------------------------------------------------- track record */
@@ -68,16 +102,16 @@ export const about = {
   eyebrow: 'About',
   title: 'Engineering that starts with the problem.',
   lede:
-    'Six years of backend engineering, most of it on systems that other people depend on being up.',
+    'Six years of backend architecture and full-stack delivery, most of it on systems that other people depend on being up.',
   paragraphs: [
-    "I specialise in backend development with Java, Spring Boot, and microservices — designing scalable systems, RESTful APIs, and database architectures that hold their shape under real load. That work has taken me through industrial IoT, healthcare, travel, aviation, and real-time communication, which is a useful spread: the constraints are different every time, and the engineering discipline is the same.",
-    "More recently I've been building AI into products rather than around them — LangGraph multi-agent orchestration, Spring AI, and retrieval-augmented generation over vector stores, backed by the same testing and CI standards as everything else. I also work in Python with FastAPI and on the frontend with React.",
+    "I specialise in backend architecture with Java, Spring Boot, and microservices — designing scalable systems, RESTful APIs, and database architectures that hold their shape under real load. That work has taken me through industrial IoT, healthcare, travel, aviation, and real-time communication, which is a useful spread: the constraints are different every time, and the engineering discipline is the same.",
+    "More recently I've been building AI into products rather than around them — LangGraph multi-agent orchestration, Spring AI, and retrieval-augmented generation over vector stores, backed by the same testing and CI standards as everything else. On the frontend I work in React and TypeScript — real-time dashboards, map-based interfaces, and offline-capable apps — and I also work in Python with FastAPI.",
     "Alongside the code, I lead. I own architecture decisions, run code reviews, mentor junior engineers, and work with cross-functional teams to get things shipped. Before that I spent nearly three years as a teaching assistant at North South University, which is where I learned that explaining a system clearly is most of understanding it.",
   ],
   facts: [
     { label: 'Based in', value: 'Dhaka, Bangladesh · GMT+6' },
-    { label: 'Focus', value: 'Backend · Applied AI · Cloud' },
-    { label: 'Core stack', value: 'Java · Spring Boot · Python · React' },
+    { label: 'Focus', value: 'Architecture · Backend · Frontend · Applied AI' },
+    { label: 'Core stack', value: 'Java · Spring Boot · React · TypeScript' },
     { label: 'Open to', value: 'Projects, consulting, and senior roles' },
   ],
   education: [
@@ -97,6 +131,12 @@ export const about = {
       degree: 'Secondary School Certificate (SSC)',
       school: 'National Ideal School, Dhaka',
       period: '2013',
+      note: 'GPA 5.00 / 5.00',
+    },
+    {
+      degree: 'Junior School Certificate (JSC)',
+      school: 'National Ideal School, Dhaka',
+      period: '2010',
       note: 'GPA 5.00 / 5.00',
     },
   ],
@@ -186,11 +226,11 @@ export const experience = {
       current: true,
       roles: [{ title: 'Senior Software Engineer', period: 'January 2025 — Present' }],
       context:
-        'Two production platforms running in parallel: a real-time industrial IoT monitoring system I lead as developer, and an AI-enabled healthcare backend.',
+        'Several production platforms running in parallel: a real-time industrial IoT monitoring system I lead as developer, an AI-enabled healthcare backend, and a group of AI-infrastructure products — a site readiness platform, an interactive network digital twin, and an agent-readiness assessment tool.',
       responsibilities: [
-        'Own architecture decisions across the IoT platform',
+        'Own architecture decisions across the IoT and AI-infrastructure platforms',
         'Mentor teammates and drive cross-functional delivery',
-        'Set testing and CI standards on both products',
+        'Set testing and CI standards across the products',
       ],
       projects: [
         {
@@ -245,6 +285,101 @@ export const experience = {
             'GitHub Actions',
           ],
           accent: 'clinical',
+        },
+        {
+          name: 'AI Infrastructure Readiness Platform',
+          role: 'Senior Software Engineer',
+          problem:
+            'Judging where AI workloads can run means weighing power, cooling, space, and network across many candidate sites — and that data sat in separate sources, so there was no single scored view to compare them.',
+          work: [
+            'Built and extended a Spring Boot platform that scores candidate sites for AI readiness, with separate batch jobs feeding one dashboard.',
+            'Shipped a React dashboard on managed cloud containers behind identity-aware access, plus an offline field-survey app for tablets that keeps working with no connection and syncs when it regains one.',
+            "Moved the platform's data reads from flat files to a managed PostgreSQL database behind a switch that can fall back to files, so the migration could be rolled back at any point.",
+            'Ran QA fix rounds across the dashboard — a page crash on missing data, malformed score cards, and an explanation that never reached production — each fix shipped with a test that fails on the old code.',
+            'Kept CI strict: schema validation, data contracts between jobs, and a release gate that must pass before any commit lands.',
+          ],
+          architecture:
+            'A structured dataset is the source of truth. Spring Batch jobs validate, merge, and score it into versioned artifacts, each job publishing its own output. The React dashboard reads through a REST API over Spring Data JPA, schema changes go through versioned Flyway migrations, and GitHub Actions runs the checks before deploying the containers.',
+          outcomes: [
+            { value: 'One', label: 'Comparable scored view' },
+            { value: 'Reversible', label: 'Database migration' },
+            { value: 'Gated', label: 'Every commit' },
+          ],
+          impact:
+            'One consistent scored view for comparing sites, and automated checks that stop bad data before it ships.',
+          stack: [
+            'Java',
+            'Spring Boot',
+            'Spring Batch',
+            'React',
+            'PostgreSQL',
+            'Flyway',
+            'Docker',
+            'GitHub Actions',
+            'JUnit 5',
+            'Testcontainers',
+          ],
+          accent: 'readiness',
+        },
+        {
+          name: 'Interactive Network Digital Twin',
+          role: 'Frontend & Simulation Engineer',
+          problem:
+            'Stakeholders needed to see how a distributed AI-inference network behaves when sites fail or demand shifts, and to explore pricing — without anything in the build suggesting the network is already deployed.',
+          work: [
+            'Built two applications from one React and TypeScript codebase: a map-based explorer with failure and re-route simulations running in a web worker, and a guided pricing and engagement tool.',
+            'Compiled declarative source data into typed bundles at build time with a Java generator run from the build, so the apps ship their data instead of fetching it.',
+            'Kept site-level detail out of the customer-facing build, with tests that inspect the built output to make sure it stays out.',
+            'Fixed a batch of QA findings in one release — stacking order of tooltips, layout at laptop widths, a score that hid one of its inputs, and overlapping map markers.',
+          ],
+          architecture:
+            'One TypeScript codebase produces two builds. A Java generator turns declarative source data into typed bundles at build time, and the customer-facing build omits site-level detail. Simulation runs in a web worker so the deck.gl and MapLibre layers stay responsive while failures re-route, with Vitest and Playwright running on every change.',
+          outcomes: [
+            { value: '2', label: 'Apps, one codebase' },
+            { value: 'Worker', label: 'Off-thread simulation' },
+            { value: 'Enforced', label: 'Build-level redaction' },
+          ],
+          impact:
+            'Stakeholders can explore failure and demand scenarios on the map themselves, and the unit and browser suites catch a regression before release.',
+          stack: [
+            'React',
+            'TypeScript',
+            'deck.gl',
+            'MapLibre',
+            'Vite',
+            'Vitest',
+            'Playwright',
+            'Java',
+          ],
+          accent: 'twin',
+        },
+        {
+          name: 'AI Readiness Assessment Tool',
+          role: 'Backend Engineer',
+          problem:
+            'Organisations needed a repeatable way to find out whether an environment is ready for AI agents, and where AI is already in use.',
+          work: [
+            'Worked on a Spring Boot service that turns a structured interview — plus exports and logs the customer chooses to share — into a scored report with ranked findings and next steps.',
+            'Built fillable PDF questionnaires and an import that reads the returned forms back into the scoring model.',
+            'Produced sample sets at target scores, each one checked by importing it back and re-scoring it through the tool itself.',
+          ],
+          architecture:
+            'A rule-based scoring engine sits behind a Spring Boot REST API. The questionnaire definition, the scoring rules, and the report template are driven from one structured model, so a question added in one place flows through scoring and into the generated PDF — and the import reads that PDF back without a second mapping.',
+          outcomes: [
+            { value: 'Round-trip', label: 'PDF export → import' },
+            { value: 'One', label: 'Model behind form and score' },
+          ],
+          impact:
+            'An assessment that can be run the same way twice, with findings ranked and the scoring reproducible from the returned form alone.',
+          stack: [
+            'Java',
+            'Spring Boot',
+            'REST APIs',
+            'Rule-based scoring',
+            'Apache PDFBox',
+            'JUnit 5',
+          ],
+          accent: 'assessment',
         },
       ],
     },
@@ -494,7 +629,7 @@ export const stack = {
     {
       name: 'Languages',
       code: 'LN',
-      items: ['Java', 'Python', 'JavaScript (ES6+)', 'SQL', 'C', 'C++'],
+      items: ['Java', 'Python', 'TypeScript', 'JavaScript (ES6+)', 'SQL', 'C', 'C++'],
     },
     {
       name: 'Backend',
@@ -503,6 +638,7 @@ export const stack = {
         'Spring Boot',
         'Spring Security',
         'Spring Data JPA',
+        'Spring Batch',
         'Hibernate',
         'Microservices',
         'Javalin',
@@ -512,6 +648,7 @@ export const stack = {
         'Redis',
         'JWT / OAuth 2.0',
         'JUnit / Mockito',
+        'Testcontainers',
       ],
     },
     {
@@ -532,7 +669,7 @@ export const stack = {
     {
       name: 'Databases',
       code: 'DB',
-      items: ['PostgreSQL', 'MySQL', 'MS SQL', 'SQLite', 'InfluxDB', 'pgvector'],
+      items: ['PostgreSQL', 'MySQL', 'MS SQL', 'SQLite', 'InfluxDB', 'pgvector', 'Flyway'],
     },
     {
       name: 'Cloud & DevOps',
@@ -546,15 +683,28 @@ export const stack = {
       ],
     },
     {
-      name: 'Frontend & Practice',
+      name: 'Frontend',
       code: 'FE',
       items: [
         'ReactJS',
+        'TypeScript',
         'Angular',
         'HTML5 / CSS3',
+        'Vite',
         'Real-time UIs (WebSocket)',
+        'deck.gl / MapLibre',
+        'Responsive, accessible UI',
+        'Vitest / Playwright',
+      ],
+    },
+    {
+      name: 'Practice & Delivery',
+      code: 'PR',
+      items: [
         'System design',
         'REST API design',
+        'Architecture decisions',
+        'Code review & mentoring',
         'TDD',
         'Agile / Scrum',
       ],
